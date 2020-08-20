@@ -1,14 +1,17 @@
 {
-  "name": "frontend",
+  "name": "my-react-toolbox",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "emotion": "^10.0.27",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "react-transition-group": "^4.4.1",
+    "typescript": "^3.9.7"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -30,5 +33,25 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-transition-group": "^4.4.0"
+  },
+  "bit": {
+    "env": {
+      "compiler": "bit.envs/compilers/react-typescript@3.1.56"
+    },
+    "componentsDefaultDirectory": "components/{name}",
+    "packageManager": "yarn",
+    "overrides": {
+      "*": {
+        "dependencies": {
+          "react": "-"
+        },
+        "peerDependencies": {
+          "react": "+"
+        }
+      }
+    }
   }
 }
