@@ -25,7 +25,7 @@ const OnMountFade: React.FC<IProps> = ({ children, delay = 0, ...rest }) => {
   }, []);
 
   return (
-    <Fade {...rest} in={visible}>
+    <Fade {...rest} visible={visible}>
       {children}
     </Fade>
   );

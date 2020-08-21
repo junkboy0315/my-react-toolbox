@@ -20,7 +20,7 @@ const SeenFade: React.FC<IProps> = ({
 
   return (
     <div className={className} ref={ref}>
-      <Fade {...rest} in={isSeen}>
+      <Fade {...rest} visible={isSeen}>
         {children}
       </Fade>
     </div>

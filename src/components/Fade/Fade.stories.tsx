@@ -8,7 +8,7 @@ const ToggleWrapper = (props: IProps) => {
   return (
     <>
       <button onClick={() => setVisible(!visible)}>toggle</button>
-      <Fade {...props} in={visible}>
+      <Fade {...props} visible={visible}>
         <div style={{ background: 'gray' }}>I'm Content</div>
       </Fade>
     </>

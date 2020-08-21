@@ -6,7 +6,7 @@ export interface IProps {
   delay?: number;
   direction?: 'upward' | 'none';
   duration?: number;
-  in: boolean; // to handle visibility by manual
+  visible: boolean; // to handle visibility by manual
 }
 
 const Fade: React.FC<IProps> = ({
@@ -14,7 +14,7 @@ const Fade: React.FC<IProps> = ({
   delay = 0,
   direction = 'none',
   duration = 160,
-  in: inProp,
+  visible,
 }) => {
   const fadeTargetRef = useRef(null);
 
@@ -46,7 +46,7 @@ const Fade: React.FC<IProps> = ({
   }, [direction]);
 
   return (
-    <Transition in={inProp} timeout={duration} nodeRef={fadeTargetRef}>
+    <Transition in={visible} timeout={duration} nodeRef={fadeTargetRef}>
       {(state) => (
         <div
           ref={fadeTargetRef}
