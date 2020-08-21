@@ -27,3 +27,9 @@ Basic.args = {};
 
 export const LongDuration = Template.bind({});
 LongDuration.args = { duration: 3000 };
+
+export const Delay = Template.bind({});
+Delay.args = { delay: 1000 };
+
+export const DirectionUpward = Template.bind({});
+DirectionUpward.args = { direction: 'upward' };
