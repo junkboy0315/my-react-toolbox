@@ -6,18 +6,9 @@ export type Props = Omit<FadeProps, 'visible'>;
 const OnMountFade: React.FC<Props> = ({ children, ...rest }) => {
   const [visible, setVisible] = useState(false);
 
-  let canceled = false;
-
   useEffect(() => {
-    setTimeout(() => {
-      if (!canceled) {
-        setVisible(true);
-      }
-    }, delay);
-    return () => {
-      // eslint-disable-next-line
-      canceled = true;
-    };
+    // animation doesn't work without this
+    setTimeout(() => setVisible(true), 0);
   }, []);
 
   return (
