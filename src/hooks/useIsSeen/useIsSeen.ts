@@ -1,8 +1,8 @@
 import { useCallback, useRef, useState } from 'react';
 
-export const useIsInSight = ({ offsetY = 0 }) => {
+const useIsSeen = ({ offsetY = 0 } = {}) => {
   const scrollHandler = useRef<(this: Window, ev: Event) => any>(() => {});
-  const [isInSight, setIsInSight] = useState(false);
+  const [isSeen, setIsSeen] = useState(false);
 
   const onElementRefUpdated = useCallback(
     (node: HTMLDivElement) => {
@@ -16,9 +16,9 @@ export const useIsInSight = ({ offsetY = 0 }) => {
         const { top: myTop } = node.getBoundingClientRect();
         const windowHeight = window.innerHeight;
         if (myTop + offsetY < windowHeight) {
-          setIsInSight(true);
+          setIsSeen(true);
         } else {
-          setIsInSight(false);
+          setIsSeen(false);
         }
       };
       window.addEventListener('scroll', scrollHandler.current);
@@ -26,5 +26,7 @@ export const useIsInSight = ({ offsetY = 0 }) => {
     [offsetY],
   );
 
-  return { ref: onElementRefUpdated, isInSight };
+  return { ref: onElementRefUpdated, isSeen };
 };
+
+export default useIsSeen;
