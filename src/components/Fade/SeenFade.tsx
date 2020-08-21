@@ -1,6 +1,6 @@
 import React from 'react';
 import useIsSeen from '../../hooks/useIsSeen/useIsSeen';
-import { Fade } from './Fade';
+import Fade from './Fade';
 
 export interface IProps {
   children: React.ReactElement;

@@ -8,7 +8,7 @@ export interface IProps {
   in: boolean; // to handle visibility by manual
 }
 
-export const Fade: React.FC<IProps> = ({
+const Fade: React.FC<IProps> = ({
   children,
   delay = 0,
   duration = 160,
@@ -45,3 +45,5 @@ export const Fade: React.FC<IProps> = ({
     </Transition>
   );
 };
+
+export default Fade;

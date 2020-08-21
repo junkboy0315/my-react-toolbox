@@ -10,6 +10,9 @@ const Component = (props: any) => {
       background: gray;
       height: 150vh;
     `,
+    seenFadeContainer: css`
+      background: lightpink;
+    `,
     target: css`
       background: lightgreen;
     `,
@@ -22,7 +25,9 @@ const Component = (props: any) => {
   return (
     <>
       <div className={styles.preContent}>Pre content</div>
-      <SeenFade {...props}>I'm target</SeenFade>
+      <SeenFade {...props} className={styles.seenFadeContainer}>
+        <div className={styles.target}>I'm target</div>
+      </SeenFade>
       <div className={styles.postContent}>Post Content</div>
     </>
   );

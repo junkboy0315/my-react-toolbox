@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Fade } from './Fade';
+import Fade from './Fade';
 
 export interface IProps {
   children: React.ReactElement;
