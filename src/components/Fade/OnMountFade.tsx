@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Fade from './Fade';
+import Fade, { Props as FadeProps } from './Fade';
 
-export interface IProps {
-  children: React.ReactElement;
-  duration?: number;
-  delay?: number;
-}
+export type Props = Omit<FadeProps, 'visible'>;
 
-const OnMountFade: React.FC<IProps> = ({ children, delay = 0, ...rest }) => {
+const OnMountFade: React.FC<Props> = ({ children, ...rest }) => {
   const [visible, setVisible] = useState(false);
 
   let canceled = false;

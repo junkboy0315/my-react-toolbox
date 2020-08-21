@@ -1,16 +1,13 @@
 import React from 'react';
 import useIsSeen from '../../hooks/useIsSeen/useIsSeen';
-import Fade from './Fade';
+import Fade, { Props as FadeProps } from './Fade';
 
-export interface IProps {
-  children: React.ReactElement;
-  className: string;
-  delay: number;
-  duration?: number;
+export type Props = {
+  className?: string;
   offsetY?: number;
-}
+} & Omit<FadeProps, 'visible'>;
 
-const SeenFade: React.FC<IProps> = ({
+const SeenFade: React.FC<Props> = ({
   children,
   className,
   offsetY = 0,

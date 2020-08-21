@@ -1,15 +1,15 @@
 import React, { useMemo, useRef } from 'react';
 import { Transition } from 'react-transition-group';
 
-export interface IProps {
+export type Props = {
   children: React.ReactElement;
   delay?: number;
   direction?: 'upward' | 'none';
   duration?: number;
   visible: boolean; // to handle visibility by manual
-}
+};
 
-const Fade: React.FC<IProps> = ({
+const Fade: React.FC<Props> = ({
   children,
   delay = 0,
   direction = 'none',
