@@ -31,5 +31,8 @@ LongDuration.args = { duration: 3000 };
 export const Delay = Template.bind({});
 Delay.args = { delay: 1000 };
 
-export const DirectionUpward = Template.bind({});
-DirectionUpward.args = { direction: 'upward' };
+export const FadeTypeUpward = Template.bind({});
+FadeTypeUpward.args = { fadeType: 'upward', duration: 1000 };
+
+export const FadeTypeBlur = Template.bind({});
+FadeTypeBlur.args = { fadeType: 'blur', duration: 1000 };

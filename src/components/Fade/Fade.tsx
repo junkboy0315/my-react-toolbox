@@ -4,7 +4,7 @@ import { Transition } from 'react-transition-group';
 export type Props = {
   children: React.ReactElement;
   delay?: number;
-  direction?: 'upward' | 'none';
+  fadeType?: 'blur' | 'none' | 'upward';
   duration?: number;
   visible: boolean; // to handle visibility by manual
 };
@@ -12,7 +12,7 @@ export type Props = {
 const Fade: React.FC<Props> = ({
   children,
   delay = 0,
-  direction = 'none',
+  fadeType = 'none',
   duration = 160,
   visible,
 }) => {
@@ -23,7 +23,16 @@ const Fade: React.FC<Props> = ({
   };
 
   const transitionStyles = useMemo(() => {
-    switch (direction) {
+    switch (fadeType) {
+      case 'blur': {
+        return {
+          entering: { opacity: 1, filter: 'blur(0px)' },
+          entered: { opacity: 1, filter: 'blur(0px)' },
+          exiting: { opacity: 0, filter: 'blur(15px)' },
+          exited: { opacity: 0, filter: 'blur(15px)' },
+          unmounted: {},
+        };
+      }
       case 'none': {
         return {
           entering: { opacity: 1 },
@@ -43,7 +52,7 @@ const Fade: React.FC<Props> = ({
         };
       }
     }
-  }, [direction]);
+  }, [fadeType]);
 
   return (
     <Transition in={visible} timeout={duration} nodeRef={fadeTargetRef}>
