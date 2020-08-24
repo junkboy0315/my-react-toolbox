@@ -1,5 +1,9 @@
 import { useCallback, useRef, useState } from 'react';
 
+export type Options = {
+  offsetY?: number;
+};
+
 const useIsSeen = ({ offsetY = 0 } = {}) => {
   const scrollHandler = useRef<(this: Window, ev: Event) => any>(() => {});
   const [isSeen, setIsSeen] = useState(false);

@@ -1,10 +1,14 @@
 import { Meta, Story } from '@storybook/react';
 import { css } from 'emotion';
 import React from 'react';
-import useIsSeen from './useIsSeen';
+import useIsSeen, { Options } from './useIsSeen';
 
-const Component = (props: any) => {
-  const { isSeen, ref } = useIsSeen({ offsetY: props.offset });
+export default {
+  title: 'hooks/useIsSeen',
+} as Meta;
+
+const Template: Story<Options> = (args) => {
+  const { isSeen, ref } = useIsSeen({ offsetY: args.offsetY });
 
   const styles = {
     preContent: css`
@@ -41,15 +45,8 @@ const Component = (props: any) => {
   );
 };
 
-export default {
-  title: 'hooks/useIsSeen',
-  component: Component,
-} as Meta;
-
-const Template: Story = (args) => <Component {...args} />;
-
 export const Basic = Template.bind({});
 Basic.args = {};
 
 export const Offset = Template.bind({});
-Offset.args = { offset: 200 };
+Offset.args = { offsetY: 200 };
