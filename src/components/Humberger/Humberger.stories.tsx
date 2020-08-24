@@ -17,7 +17,7 @@ const Template: Story<Props> = (args) => {
         <button onClick={() => setIsActive(!isActive)}>toggle</button>
       </div>
       <div>
-        <Humberger {...args} isActive={isActive} />
+        <Humberger {...args} isActive={isActive} motionType="squeeze" />
       </div>
     </>
   );
