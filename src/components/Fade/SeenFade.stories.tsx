@@ -2,7 +2,7 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
 import { css } from 'emotion';
 import React from 'react';
-import SeenFade, { IProps } from './SeenFade';
+import SeenFade, { Props } from './SeenFade';
 
 const Component = (props: any) => {
   const styles = {
@@ -38,7 +38,7 @@ export default {
   component: Component,
 } as Meta;
 
-const Template: Story<IProps> = (args) => <Component {...args} />;
+const Template: Story<Props> = (args) => <Component {...args} />;
 
 export const Basic = Template.bind({});
 Basic.args = {};
