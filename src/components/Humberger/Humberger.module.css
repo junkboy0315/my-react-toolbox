@@ -1,0 +1,93 @@
+/* container */
+
+.container {
+  background-color: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: inline-block;
+  font: inherit;
+  margin: 0;
+  overflow: visible;
+  padding: 15px 15px;
+  text-transform: none;
+  transition-duration: 0.15s;
+  transition-property: filter;
+  transition-timing-function: linear;
+}
+.container.is-active .inner,
+.container.is-active .inner::before,
+.container.is-active .inner::after {
+  /* background-color: #000; */
+}
+
+/* box */
+.box {
+  width: 40px;
+  height: 24px;
+  display: inline-block;
+  position: relative;
+}
+
+/* inner */
+
+.inner {
+  display: block;
+  top: 50%;
+  margin-top: -2px;
+}
+.inner,
+.inner::before,
+.inner::after {
+  width: 40px;
+  height: 4px;
+  background-color: #000;
+  border-radius: 4px;
+  position: absolute;
+  transition-property: transform;
+  transition-duration: 0.15s;
+  transition-timing-function: ease;
+}
+.inner::before,
+.inner::after {
+  content: '';
+  display: block;
+}
+.inner::before {
+  top: -10px;
+}
+.inner::after {
+  bottom: -10px;
+}
+
+/*
+   * Squeeze
+   */
+.inner {
+  transition-duration: 0.075s;
+  transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.inner::before {
+  transition: top 0.075s 0.12s ease, opacity 0.075s ease;
+}
+.inner::after {
+  transition: bottom 0.075s 0.12s ease,
+    transform 0.075s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.inner_isActive {
+  transform: rotate(45deg);
+  transition-delay: 0.12s;
+  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.inner_isActive::before {
+  top: 0;
+  opacity: 0;
+  transition: top 0.075s ease, opacity 0.075s 0.12s ease;
+}
+.inner_isActive::after {
+  bottom: 0;
+  transform: rotate(-90deg);
+  transition: bottom 0.075s ease,
+    transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
