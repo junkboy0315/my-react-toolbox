@@ -24,6 +24,3 @@ const Template: Story = (args) => {
 
 export const Basic = Template.bind({});
 Basic.args = {};
-
-export const Offset = Template.bind({});
-Offset.args = { offsetY: 200 };
