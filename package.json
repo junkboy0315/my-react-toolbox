@@ -2,17 +2,6 @@
   "name": "my-react-toolbox",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "emotion": "^10.0.27",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3",
-    "react-transition-group": "^4.4.1",
-    "typescript": "^3.9.7"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -20,6 +9,31 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public --ci",
     "build-storybook": "build-storybook -s public"
+  },
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "emotion": "^10.0.27",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-portal": "^4.2.1",
+    "react-scripts": "3.4.3",
+    "react-transition-group": "^4.4.1",
+    "typescript": "^3.9.7"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.4",
+    "@storybook/addon-actions": "^6.0.16",
+    "@storybook/addon-essentials": "^6.0.16",
+    "@storybook/addon-links": "^6.0.16",
+    "@storybook/node-logger": "^6.0.16",
+    "@storybook/preset-create-react-app": "^3.1.4",
+    "@storybook/react": "^6.0.16",
+    "@types/react-portal": "^4.0.2",
+    "@types/react-transition-group": "^4.4.0",
+    "babel-loader": "^8.1.0",
+    "react-is": "^16.13.1"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -39,18 +53,6 @@
       "last 2 firefox version",
       "last 2 safari version"
     ]
-  },
-  "devDependencies": {
-    "@babel/core": "^7.11.4",
-    "@storybook/addon-actions": "^6.0.16",
-    "@storybook/addon-essentials": "^6.0.16",
-    "@storybook/addon-links": "^6.0.16",
-    "@storybook/node-logger": "^6.0.16",
-    "@storybook/preset-create-react-app": "^3.1.4",
-    "@storybook/react": "^6.0.16",
-    "@types/react-transition-group": "^4.4.0",
-    "babel-loader": "^8.1.0",
-    "react-is": "^16.13.1"
   },
   "bit": {
     "env": {
