@@ -4,7 +4,12 @@ import { css } from 'emotion';
 import React from 'react';
 import SeenFade, { Props } from './SeenFade';
 
-const Component = (props: any) => {
+export default {
+  title: 'Components/SeenFade',
+  component: SeenFade,
+} as Meta;
+
+const Template: Story<Props> = (props) => {
   const styles = {
     preContent: css`
       background: gray;
@@ -25,20 +30,17 @@ const Component = (props: any) => {
   return (
     <>
       <div className={styles.preContent}>Pre content</div>
-      <SeenFade {...props} className={styles.seenFadeContainer}>
+      <SeenFade
+        {...props}
+        className={styles.seenFadeContainer}
+        fadeType="upward"
+      >
         <div className={styles.target}>I'm target</div>
       </SeenFade>
       <div className={styles.postContent}>Post Content</div>
     </>
   );
 };
-
-export default {
-  title: 'Components/SeenFade',
-  component: Component,
-} as Meta;
-
-const Template: Story<Props> = (args) => <Component {...args} />;
 
 export const Basic = Template.bind({});
 Basic.args = {};
