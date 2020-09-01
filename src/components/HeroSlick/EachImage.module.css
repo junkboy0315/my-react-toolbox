@@ -1,0 +1,16 @@
+.imageContainer {
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+}
+
+.image {
+  background-attachment: scroll;
+  background-clip: border-box;
+  background-origin: border-box;
+  background-position: center;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
