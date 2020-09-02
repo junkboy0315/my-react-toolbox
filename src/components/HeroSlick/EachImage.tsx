@@ -1,64 +1,67 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Transition } from 'react-transition-group';
-import { TransitionStatus } from 'react-transition-group/Transition';
+import gsap from 'gsap';
+import React, { useEffect, useRef } from 'react';
 import styles from './EachImage.module.css';
 
 export type Props = {
+  active: boolean;
+  intervalMs?: number;
   src: string;
-  in: boolean;
+  transitionDurationMs?: number;
 };
 
-const EachImage: React.FC<Props> = ({ src = null, in: inProp = false }) => {
-  const imageContainerRef = useRef<HTMLDivElement>(null);
+const EachImage: React.FC<Props> = ({
+  active = false,
+  intervalMs = 5000,
+  src = null,
+  transitionDurationMs = 1500,
+}) => {
+  const imageRef = useRef<HTMLDivElement>(null);
+  const timeline = useRef<gsap.core.Timeline>();
 
-  // inPropがtrueだった場合に、マウント時にアニメーションが効かない問題が発生したため、
-  // Transitionの`in`に一旦falseを渡す
-  const [visible, setVisible] = useState(false);
+  // アニメーションの仕込み
   useEffect(() => {
-    setVisible(inProp);
-  }, [inProp]);
+    timeline.current = gsap
+      .timeline({ defaults: { ease: 'linear' } })
+      .fromTo(
+        imageRef.current,
+        transitionDurationMs / 1000,
+        { opacity: 0 },
+        { opacity: 1 },
+      )
+      .fromTo(
+        imageRef.current,
+        intervalMs / 1000 + transitionDurationMs / 1000,
+        { transform: 'scale(1.1)' },
+        { transform: 'scale(1.0)' },
+        '<',
+      )
+      .set(imageRef.current, { opacity: 0 })
+      .pause();
+  }, [intervalMs, transitionDurationMs]);
 
-  const appearingStyle = {
-    opacity: 1,
-    transform: 'scale(1.0)',
-    transition: 'opacity 1s linear, transform 7s linear',
-  };
-
-  const disappearedStyle = {
-    opacity: 0,
-    transform: 'scale(1.1)',
-  };
-
-  const anim: { [key in TransitionStatus]: any } = {
-    entering: appearingStyle,
-    entered: appearingStyle,
-    exiting: appearingStyle,
-    exited: disappearedStyle,
-    unmounted: disappearedStyle,
-  };
+  // アクティブになった瞬間にアニメーションを開始する
+  useEffect(() => {
+    if (!timeline.current) return;
+    if (active) {
+      timeline.current.restart();
+    }
+  }, [active]);
 
   return (
-    <Transition in={visible} timeout={1000} nodeRef={imageContainerRef}>
-      {(state) => {
-        return (
-          <div
-            className={styles.imageContainer}
-            ref={imageContainerRef}
-            style={{
-              zIndex: visible ? 'auto' : -1,
-            }}
-          >
-            <div
-              className={styles.image}
-              style={{
-                backgroundImage: `url(${src})`,
-                ...anim[state],
-              }}
-            ></div>
-          </div>
-        );
+    <div
+      className={styles.imageContainer}
+      style={{
+        zIndex: active ? 'auto' : -1,
       }}
-    </Transition>
+    >
+      <div
+        className={styles.image}
+        style={{
+          backgroundImage: `url(${src})`,
+        }}
+        ref={imageRef}
+      ></div>
+    </div>
   );
 };
 

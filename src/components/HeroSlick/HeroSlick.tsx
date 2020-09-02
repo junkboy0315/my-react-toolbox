@@ -7,7 +7,7 @@ export type Props = {
   intervalMs?: number;
 };
 
-const HeroSlick: React.FC<Props> = ({ intervalMs = 6000, srcs = [] }) => {
+const HeroSlick: React.FC<Props> = ({ intervalMs = 5000, srcs = [] }) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   const imageCount = srcs.length;
@@ -20,7 +20,14 @@ const HeroSlick: React.FC<Props> = ({ intervalMs = 6000, srcs = [] }) => {
   }, [imageCount, intervalMs]);
 
   const imageElements = srcs.map((src, index) => {
-    return <EachImage src={src} in={index === currentIndex} key={src} />;
+    return (
+      <EachImage
+        active={index === currentIndex}
+        intervalMs={intervalMs}
+        key={src}
+        src={src}
+      />
+    );
   });
 
   return <div className={styles.rootContainer}>{imageElements}</div>;

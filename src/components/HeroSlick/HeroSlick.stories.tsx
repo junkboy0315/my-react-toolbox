@@ -15,6 +15,7 @@ const Template: Story<Props> = (props) => {
         srcs={[
           'https://hikimiaoiya.com/wp/wp-content/themes/aoiya/assets/images/main/mv_01.jpg',
           'https://hikimiaoiya.com/wp/wp-content/themes/aoiya/assets/images/main/mv_02.jpg',
+          'https://i.imgur.com/KhruwqA.jpeg',
         ]}
       />
       <div style={{ height: '100vh' }}>follo</div>

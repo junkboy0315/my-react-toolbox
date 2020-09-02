@@ -9,16 +9,17 @@ export default {
 } as Meta;
 
 const Template: Story<FadeProps> = (props: FadeProps) => {
-  const [visible, setVisible] = useState(false);
+  const [active, setActive] = useState(false);
   return (
     <>
       <button
-        onClick={() => setVisible(!visible)}
+        onClick={() => setActive(!active)}
         style={{ marginBottom: '5rem' }}
       >
         toggle
       </button>
-      <EachImage {...props} in={visible}></EachImage>
+      <span>active: {String(active)}</span>
+      <EachImage {...props} active={active}></EachImage>
     </>
   );
 };
