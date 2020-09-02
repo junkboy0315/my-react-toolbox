@@ -13,9 +13,21 @@ jobs:
 
       - uses: actions/setup-node@master
         with:
-          node-version: '10.x'
-      - run: npm install
-      - run: npm run build:prod
+          node-version: '12.18.3'
+
+      # node_modulesをキャッシュする
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-build-${{ env.cache-name }}-
+            ${{ runner.OS }}-build-
+            ${{ runner.OS }}-
+
+      - run: yarn
+      - run: yarn build-storybook
 
       - uses: w9jds/firebase-action@master
         with:
