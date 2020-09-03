@@ -1,5 +1,5 @@
 import React from 'react';
-import usePrevious from '../../hooks/usePrevious/usePrevious';
+import { usePrevious } from 'react-use';
 import styles from './AoiyaHumberger.module.css';
 
 export type Props = {
