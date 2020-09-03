@@ -8,20 +8,13 @@ export default {
   component: HeroSlick,
 } as Meta;
 
-const Template: Story<Props> = (props) => {
-  return (
-    <>
-      <HeroSlick
-        srcs={[
-          'https://hikimiaoiya.com/wp/wp-content/themes/aoiya/assets/images/main/mv_01.jpg',
-          'https://hikimiaoiya.com/wp/wp-content/themes/aoiya/assets/images/main/mv_02.jpg',
-          'https://i.imgur.com/KhruwqA.jpeg',
-        ]}
-      />
-      <div style={{ height: '100vh' }}>follo</div>
-    </>
-  );
-};
+const Template: Story<Props> = (props) => <HeroSlick {...props} />;
 
 export const Basic = Template.bind({});
-Basic.args = {};
+Basic.args = {
+  srcs: [
+    'https://hikimiaoiya.com/wp/wp-content/themes/aoiya/assets/images/main/mv_01.jpg',
+    'https://hikimiaoiya.com/wp/wp-content/themes/aoiya/assets/images/main/mv_02.jpg',
+    'https://i.imgur.com/KhruwqA.jpeg',
+  ],
+};
