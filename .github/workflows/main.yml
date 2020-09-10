@@ -29,8 +29,8 @@ jobs:
       - run: yarn
       - run: yarn build-storybook
 
-      - uses: w9jds/firebase-action@master
+      - name: Deploy to Github pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          args: deploy --only hosting
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./storybook-static
