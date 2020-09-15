@@ -7,7 +7,7 @@ export default {
 } as Meta;
 
 const Template: Story<Options> = (args) => {
-  const { isIntersecting, ref } = useIsIntersecting(args);
+  const { isIntersecting, onTargetChange } = useIsIntersecting(args);
 
   return (
     <>
@@ -15,7 +15,7 @@ const Template: Story<Options> = (args) => {
         isIntersecting: {String(isIntersecting)}
       </div>
       <div style={{ height: '150vh', background: 'gray' }}></div>
-      <div ref={ref}>check</div>
+      <div ref={onTargetChange}>check</div>
       <div style={{ height: '150vh', background: 'gray' }}></div>
     </>
   );

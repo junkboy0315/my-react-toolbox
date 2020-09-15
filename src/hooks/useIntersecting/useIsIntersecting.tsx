@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useRef, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 export type Options = {
   offset?: number;
@@ -7,39 +7,40 @@ export type Options = {
 
 type Result = {
   isIntersecting: boolean;
-  ref: RefObject<HTMLDivElement>;
+  onTargetChange: (instance: HTMLDivElement | null) => void;
 };
 
 const useIsIntersecting = ({ offset = 0, once = false } = {}): Result => {
-  const ref = useRef<HTMLDivElement>(null);
   const [isIntersecting, setIsIntersecting] = useState(false);
 
-  useEffect(() => {
-    const element = ref.current;
-    if (!element) return;
+  const onTargetChange = useCallback(
+    (element: any) => {
+      if (!element) return;
 
-    const options = {
-      rootMargin: `${offset}px`,
-      threshold: 0,
-    };
-    const observer = new IntersectionObserver(([{ isIntersecting }]) => {
-      if (isIntersecting) {
-        setIsIntersecting(true);
-        if (once) {
-          observer.unobserve(element);
+      const options = {
+        rootMargin: `${offset}px`,
+        threshold: 0,
+      };
+      const observer = new IntersectionObserver(([{ isIntersecting }]) => {
+        if (isIntersecting) {
+          setIsIntersecting(true);
+          if (once) {
+            observer.unobserve(element);
+          }
+        } else {
+          setIsIntersecting(false);
         }
-      } else {
-        setIsIntersecting(false);
-      }
-    }, options);
-    observer.observe(element);
+      }, options);
+      observer.observe(element);
 
-    return () => {
-      observer.unobserve(element);
-    };
-  }, [offset, once]);
+      return () => {
+        observer.unobserve(element);
+      };
+    },
+    [offset, once],
+  );
 
-  return { isIntersecting, ref };
+  return { isIntersecting, onTargetChange: onTargetChange };
 };
 
 export default useIsIntersecting;
